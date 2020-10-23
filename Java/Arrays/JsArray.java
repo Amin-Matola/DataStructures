@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.function.Function;
 import javafx.util.Pair;
 
-public class MyArray {
+public class JsArray {
     private static int maxItems;
     private Object[] items = new Object[maxItems], oldObj;
 
@@ -39,7 +39,7 @@ public class MyArray {
         return this;
     }
 
-    MyArray sort(){
+    JsArray sort(){
         Arrays.sort(this.items);
         return this;
     }
