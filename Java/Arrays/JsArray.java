@@ -1,44 +1,66 @@
-package dsa;
+package com.company;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import java.util.Arrays;
+import java.util.function.Function;
+import javafx.util.Pair;
 
-import java.util.*;
+public class MyArray {
+    private static int maxItems;
+    private Object[] items = new Object[maxItems], oldObj;
 
-public class BigOh {
-
-    public static void main(String[] args){
-        BigOh test = new BigOh();
-        //test.proofIt(2);
-        List m = new ArrayList(), b = new ArrayList();
-        LinkedList l = new LinkedList();
-
-        Vector<String> v = new Vector<String>();
-        
-        v.addElement("Amin");
-        v.addElement("Matola");
-        m.add(9);
-        m.add(null);
-        m.add(8);
-
-
-        print(101);
-        for (Object o: v) print(o);
-
-        //System.out.println(Arrays.toString(b.toArray()));
-    }
-    public static void print(@NotNull Object o){
-        System.out.println(o);
-    }
-
-    void proofIt(Integer n) {
-
-        for(int i = 0; i < n; i = i + 1){
-            //System.out.println(i);
-            for( int j = i; j < n; j += 1 ){
-                System.out.println(j);
-            }
+    void copy(Object[] o, Object[] o2){
+        maxItems  = o2.length;
+        for(int i = 0; i < o.length; i++){
+            o2[i] = o[i];
         }
     }
-}
 
+    void expand(int n){
+        oldObj = new Object[maxItems + n];
+        copy(items, oldObj);
+        items = new Object[maxItems];
+        copy(oldObj, items);
+
+    }
+
+    void push(Object o){
+        expand(1);
+        for(int i = maxItems; i > 0;){
+            i -= 1;
+            if( items[i] == null)
+                items[i] = o;
+        }
+    }
+
+    MyArray pushAll(Object ...o){
+        for(int i = 0; i < o.length; i++){
+            push(o[i]);
+        }
+        return this;
+    }
+
+    MyArray sort(){
+        Arrays.sort(this.items);
+        return this;
+    }
+
+    void map(Function f){
+        for(int i = 0; i < this.items.length; i++){
+            f.apply(this.items[i]);
+        }
+    }
+
+    Object pop(){
+
+        Object o = items[items.length-1];
+        items = Arrays.copyOf(items, items.length - 1);
+
+        return o;
+
+    }
+
+    void show(){
+        System.out.println(Arrays.toString(items));
+    }
+
+}
