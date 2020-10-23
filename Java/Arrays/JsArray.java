@@ -62,6 +62,11 @@ public class JsArray {
         return o;
 
     }
+    
+    void fill(Object o){
+        for (int i = 0; i < maxItems; i++)
+            items[i] = 0
+    }
 
     void show(){
         System.out.println(Arrays.toString(items));
