@@ -9,14 +9,14 @@ public class JsArray {
     private Object[] items      = new Object[maxItems], oldObj;
     public static int length    = maxItems
 
-    void copy(Object[] o, Object[] o2){
+    private void copy(Object[] o, Object[] o2){
         maxItems  = o2.length;
         for(int i = 0; i < o.length; i++){
             o2[i] = o[i];
         }
     }
 
-    void expand(int n){
+    private void expand(int n){
         oldObj = new Object[maxItems + n];
         copy(items, oldObj);
         items = new Object[maxItems];
