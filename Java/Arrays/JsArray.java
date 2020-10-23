@@ -65,7 +65,7 @@ public class JsArray {
     
     void fill(Object o){
         for (int i = 0; i < maxItems; i++)
-            items[i] = 0
+            items[i] = o
     }
 
     void show(){
