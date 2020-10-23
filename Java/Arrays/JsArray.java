@@ -27,12 +27,15 @@ public class JsArray {
         expand(1);
         for(int i = maxItems; i > 0;){
             i -= 1;
-            if( items[i] == null)
+            if( items[i] == null){
                 items[i] = o;
+                break;
+            }
+                
         }
     }
 
-    MyArray pushAll(Object ...o){
+    JsArray concat(Object ...o){
         for(int i = 0; i < o.length; i++){
             push(o[i]);
         }
