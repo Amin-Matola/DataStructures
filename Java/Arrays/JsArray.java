@@ -68,7 +68,7 @@ public class JsArray {
             items[i] = o
     }
 
-    void show(){
+    protected void show(){
         System.out.println(Arrays.toString(items));
     }
 
