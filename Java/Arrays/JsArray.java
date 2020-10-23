@@ -6,7 +6,8 @@ import javafx.util.Pair;
 
 public class JsArray {
     private static int maxItems;
-    private Object[] items = new Object[maxItems], oldObj;
+    private Object[] items      = new Object[maxItems], oldObj;
+    public static int length    = maxItems
 
     void copy(Object[] o, Object[] o2){
         maxItems  = o2.length;
