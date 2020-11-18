@@ -1,4 +1,4 @@
-package JavaMysql.databases;
+package arrays.JsArrays
 
 import java.util.Arrays;
 import java.util.function.Function;
