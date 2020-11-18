@@ -1,19 +1,17 @@
-package com.company;
+package JavaMysql.databases;
 
 import java.util.Arrays;
 import java.util.function.Function;
-import javafx.util.Pair;
+import java.util.stream.Collectors;
 
 public class JsArray {
     private static int maxItems;
     private Object[] items      = new Object[maxItems], oldObj;
-    public static int length    = maxItems
+    public static int length    = maxItems;
 
     private void copy(Object[] o, Object[] o2){
         maxItems  = o2.length;
-        for(int i = 0; i < o.length; i++){
-            o2[i] = o[i];
-        }
+        for(int i = 0; i < o.length; o2[i] = o[i++]);
     }
 
     private void expand(int n){
@@ -37,9 +35,7 @@ public class JsArray {
     }
 
     JsArray concat(Object ...o){
-        for(int i = 0; i < o.length; i++){
-            push(o[i]);
-        }
+        for(int i = 0; i < o.length; push(o[i++]));
         return this;
     }
 
@@ -49,9 +45,7 @@ public class JsArray {
     }
 
     void map(Function f){
-        for(int i = 0; i < this.items.length; i++){
-            f.apply(this.items[i]);
-        }
+        for(int i = 0; i < this.items.length; f.apply(this.items[i++]));
     }
 
     Object pop(){
@@ -64,8 +58,18 @@ public class JsArray {
     }
     
     void fill(Object o){
-        for (int i = 0; i < maxItems; i++)
-            items[i] = o;
+        for (int i = 0; i < maxItems; items[i++] = o);
+
+    }
+
+    @Override
+    public String toString() {
+        return "JsArray{\n" +
+                "\titems = " +
+                Arrays.toString(
+                        Arrays.stream(items).map((i) -> String.format("\n\t\t\t%s", i)).collect(Collectors.toList()).toArray()
+                )+
+                "\n\t}";
     }
 
     protected void show(){
